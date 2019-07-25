@@ -126,6 +126,21 @@ section.testimonials .button {
   margin: 13% 0 10% 0;
 }
 
+@media (min-width: 700px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2%;
+  }
+
+  .container img {
+    width: 40%;
+    margin: 0 0 5% 0;
+  }
+}
+
 .login-form {
   display: flex;
   justify-content: center;
