@@ -10,6 +10,7 @@ const router = express.Router();
 const saltRounds = 10;
 
 router.get('/signup', isLoggedIn, (req, res, next) => {
+  jd();
   res.render('signup');
 });
 
