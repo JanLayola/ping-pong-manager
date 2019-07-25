@@ -132,11 +132,25 @@ location: String
 players: [ObjectId<User>]
 ``` 
 
+## Views
+
+- homepage
+ - login
+ - sign up
+- dashboard
+- profile
+ - update profile
+ - user profile
+- tournaments
+ - create tounrament
+ - tournament details
+ - tournaments list
+
 ## Links
 
 ### Trello
 
-[Link to your trello board](https://trello.com) or picture of your physical board
+[Link to trello board](https://trello.com/b/ojTjcuX6)
 
 ### Git
 
