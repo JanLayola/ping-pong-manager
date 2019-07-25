@@ -10,7 +10,6 @@ const router = express.Router();
 const saltRounds = 10;
 
 router.get('/signup', isLoggedIn, (req, res, next) => {
-  jd();
   res.render('signup');
 });
 
@@ -37,10 +36,6 @@ router.post('/signup', isLoggedIn, isFormFilled, async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-});
-
-router.get('/login', isLoggedIn, (req, res, next) => {
-  res.render('login');
 });
 
 router.post('/login', isLoggedIn, isFormFilled, async (req, res, next) => {

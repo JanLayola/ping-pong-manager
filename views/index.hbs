@@ -1,8 +1,11 @@
-<ul>
-        <li>
-          <a href="/auth/login">Login</a>
-        </li>
-         <li>
-          <a href="/auth/signup">Signup</a>
-        </li>
-      </ul>
+<section class="container">
+  <img src="/images/Ping-pong.gif" alt="ping pong gif">
+    <section class="login-form">
+      <form action="/auth/login" method="post">
+        <input type="text" name="username" id="username" required placeholder="Username">
+        <input type="password" name="password" id="password" required placeholder="Password">
+        <button class="button" type="submit">Login</button>
+      </form>
+      <p>Don't have an account?<a class="signup" href="/auth/signup">Signup</a></p>
+    </section> 
+</section>
