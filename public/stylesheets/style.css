@@ -93,6 +93,7 @@ p {
   text-decoration: none;
   font-weight: 400;
   font-size: 1.1em;
+  margin-top: 5%;
 }
 
 
@@ -139,6 +140,19 @@ section.testimonials .button {
     width: 40%;
     margin: 0 0 5% 0;
   }
+
+  .container select {
+    width: 61%;
+    height: 40px;
+    border-radius: 8em;
+    margin: 3%;
+    border: solid 2px white;
+    background-color: white;
+    opacity: 0.9;
+    color: black;
+    text-align: center;
+    font-size: 1em;
+  }
 }
 
 .login-form {
@@ -153,6 +167,7 @@ section.testimonials .button {
 ::placeholder {
   text-align: center; 
 }
+
 
 :focus {
   outline: 0;
@@ -179,8 +194,24 @@ section.testimonials .button {
   font-size: 1em;
 }
 
+.container select {
+  width: 61%;
+  height: 40px;
+  border-radius: 1.8em;
+  margin: 3%;
+  border: solid 2px white;
+  background-color: white;
+  opacity: 0.9;
+  color: black;
+  text-align: center;
+  font-size: 1em; 
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
 #password {
-  margin-bottom: 5%;
+  margin-bottom: 3%;
 }
 
 .signup {
