@@ -92,7 +92,7 @@ p {
   border-radius: 1.8em;
   text-decoration: none;
   font-weight: 400;
-  font-size: 1.3em;
+  font-size: 1.1em;
 }
 
 
@@ -171,7 +171,7 @@ section.testimonials .button {
   height: 40px;
   border-radius: 1.8em;
   margin: 3%;
-  border: solid 2px #F7CB2D;
+  border: solid 2px white;
   background-color: white;
   opacity: 0.9;
   color: black;
