@@ -21,7 +21,7 @@ router.post('/signup', isLoggedIn, isFormFilled, async (req, res, next) => {
     const hashedPassword = bcrypt.hashSync(password, salt);
     const user = await User.findOne({ username });
     if (user) {
-      return res.redirect('../users/private');
+      return res.redirect('../users/dashboard');
     }
 
     const newUser = await User.create({
@@ -33,7 +33,7 @@ router.post('/signup', isLoggedIn, isFormFilled, async (req, res, next) => {
     });
 
     req.session.currentUser = newUser;
-    res.redirect('../users/private');
+    res.redirect('../users/dashboard');
   } catch (error) {
     next(error);
   }
@@ -48,7 +48,7 @@ router.post('/login', isLoggedIn, isFormFilled, async (req, res, next) => {
     }
     if (bcrypt.compareSync(password, user.password)) {
       req.session.currentUser = user;
-      res.redirect('../users/private');
+      res.redirect('../users/dashboard');
     } else {
       res.redirect('/auth/login');
     }

@@ -229,6 +229,37 @@ section.testimonials .button {
   margin-top: 10%;
 }
 
+/* ---- layout ---- */
+
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 2%;
+}
+
+.burger-container {
+  display: flex;
+  flex-direction: column;
+  width: 35px;
+  height: 25px;
+  justify-content: space-between;
+}
+
+.burger-container div {
+  width: 100%;
+  height: 3px;
+  background: whitesmoke;
+}
+
+.dash-info {
+  width: 100%;
+  height: 25%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
 /* ---- errors page ---- */
 
 .error-container {
