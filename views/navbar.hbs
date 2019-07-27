@@ -1,0 +1,8 @@
+{{#unless currentUser }}
+  <a href="/">Login</a>
+  <a href="/auth/signup">Signup</a>
+{{/unless}}
+{{#if data.tournaments}}
+  <a href="/user/tournamets">Tournaments</a>
+  <a href="/uyyh">Ranking</a>
+{{/if}}

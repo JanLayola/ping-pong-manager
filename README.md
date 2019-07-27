@@ -33,7 +33,7 @@ Geo Location:
 - show event in a map in event detail page
 - show all events in a map in the event list page
 
-DashBoard:
+tournaments:
 - Add user main stats
 
 Profile:
@@ -52,10 +52,10 @@ Search:
 - GET / 
   - renders the homepage
 - GET /auth/signup
-  - redirects to /dashboard if user logged in
+  - redirects to /tournaments if user logged in
   - renders the signup form (with flash msg)
 - POST /auth/signup
-  - redirects to /dashboard if user logged in
+  - redirects to /tournaments if user logged in
   - body:
     - username
     - email
@@ -64,10 +64,10 @@ Search:
     - country
     - profile img
 - GET /auth/login
-  - redirects to /dashboard if user logged in
+  - redirects to /tournaments if user logged in
   - renders the login form (with flash msg)
 - POST /auth/login
-  - redirects to /dashboard if user logged in
+  - redirects to /tournaments if user logged in
   - body:
     - username
     - password
@@ -137,7 +137,7 @@ players: [ObjectId<User>]
 - homepage
  - login
  - sign up
-- dashboard
+- tournaments
 - profile
  - update profile
  - user profile

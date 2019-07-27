@@ -7,8 +7,11 @@ const User = require('../models/User');
 const { isLoggedIn, isNotLoggedIn, isFormFilled } = require('../middlewares/authMiddlewares');
 
 /* GET users listing. */
-router.get('/dashboard', isNotLoggedIn, (req, res, next) => {
-  res.render('dashboard');
+router.get('/tournaments', isNotLoggedIn, (req, res, next) => {
+  const data = {
+    tournaments: true
+  };
+  res.render('tournaments', data);
 });
 
 module.exports = router;

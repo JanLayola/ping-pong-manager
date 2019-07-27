@@ -10,6 +10,27 @@
 </head>
 
 <body>
-  {{{body}}}
+  <main>
+      {{{body}}}
+  </main>
+  <footer>
+    <nav>
+      {{#unless currentUser }}
+        <a href="/">Login</a>
+        <a href="/auth/signup">Signup</a>
+      {{/unless}}
+      {{#if tournaments}}
+        <a href="/users/tournaments">Tournaments</a>
+        <a href="/uyyh">Ranking</a>
+      {{/if}}
+    </nav>
+  </footer>
 </body>
 </html>
+
+{{!-- <a id="login" class="login-router" href="/">Login</a>
+      <a id="signup" class="signup-router" href="/auth/signup">Signup</a>
+      <a id="tournament" class="hidden" href="">Tournaments</a>
+      <a id="ranking" class="hidden" href="">Ranking</a>
+      <a id="" class="hidden" href="">Play</a>
+      <a id="" class="hidden" href="">Create</a> --}}

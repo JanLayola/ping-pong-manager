@@ -21,7 +21,7 @@ router.post('/signup', isLoggedIn, isFormFilled, async (req, res, next) => {
     const hashedPassword = bcrypt.hashSync(password, salt);
     const user = await User.findOne({ username });
     if (user) {
-      return res.redirect('../users/dashboard');
+      return res.redirect('../users/tournaments');
     }
 
     const newUser = await User.create({
@@ -33,7 +33,7 @@ router.post('/signup', isLoggedIn, isFormFilled, async (req, res, next) => {
     });
 
     req.session.currentUser = newUser;
-    res.redirect('../users/dashboard');
+    res.redirect('/users/tournaments');
   } catch (error) {
     next(error);
   }
@@ -44,13 +44,13 @@ router.post('/login', isLoggedIn, isFormFilled, async (req, res, next) => {
   try {
     const user = await User.findOne({ username });
     if (!user) {
-      return res.redirect('/auth/login');
+      return res.redirect('/');
     }
     if (bcrypt.compareSync(password, user.password)) {
       req.session.currentUser = user;
-      res.redirect('../users/dashboard');
+      res.redirect('/users/tournaments');
     } else {
-      res.redirect('/auth/login');
+      res.redirect('/');
     }
   } catch (error) {
     next(error);
@@ -59,7 +59,7 @@ router.post('/login', isLoggedIn, isFormFilled, async (req, res, next) => {
 
 router.post('/logout', isNotLoggedIn, (req, res, next) => {
   delete req.session.currentUser;
-  return res.redirect('/auth/login');
+  return res.redirect('/');
 });
 
 module.exports = router;

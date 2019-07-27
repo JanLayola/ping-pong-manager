@@ -28,10 +28,23 @@ const userSchema = new Schema({
   },
   image: {
     type: String,
-    default: './../public/images/user-default.png'
+    default: 'images/user-default.png'
+  },
+  playedMatches: {
+    type: Number,
+    default: 0
+  },
+  winnedMatches: {
+    type: Number,
+    default: 0
+  },
+  score: {
+    type: Number,
+    default: 0
   }
 }, {
   timestamps: true
+
 });
 
 const User = mongoose.model('User', userSchema);
