@@ -337,3 +337,11 @@ header nav img {
 .hidden-nav {
   display: none;
 }
+
+/* ---- My profile  ---- */
+
+.stats-box {
+  border: solid 2px black;
+  padding: 15px;
+  width: 90%;
+}

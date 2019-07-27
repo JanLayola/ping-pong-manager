@@ -14,12 +14,12 @@
   <header>
      <nav>
        <div>
-        <button class="hidden-nav logout-button" href="#">My Profile</button>
+         <a class="hidden-nav logout-button" href="/users/profile/{{currentUser.username}}">My Profile</a>
         <form action="/auth/logout" method="post">
           <button type="submit" class="hidden-nav logout-button" href="/auth/logout">Logout</button>
         </form>
       </div>
-        <img id="profile-nav" src="{{user.image}}" alt="My profile">
+        <img id="profile-nav" src="{{currentUser.image}}" alt="My profile">
      </nav>
   </header>
     {{/if}}
