@@ -13,9 +13,13 @@
     {{#if currentUser}}
   <header>
      <nav>
-       <a class="hidden-nav" href="#">My Profile</a>
-       <a class="hidden-nav" href="#">Logout</a>
-       <img id="profile-nav" src="{{user.image}}" alt="My profile">
+       <div>
+        <button class="hidden-nav logout-button" href="#">My Profile</button>
+        <form action="/auth/logout" method="post">
+          <button type="submit" class="hidden-nav logout-button" href="/auth/logout">Logout</button>
+        </form>
+      </div>
+        <img id="profile-nav" src="{{user.image}}" alt="My profile">
      </nav>
   </header>
     {{/if}}

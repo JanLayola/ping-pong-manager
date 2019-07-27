@@ -307,17 +307,31 @@ header nav {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
+  align-items: center;
+  margin: 10px 10px 0 0;
+}
+
+header nav div {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
 }
 
 header nav img {
+  display: flex;
   width: 14%;
   border: solid 2px black;
   border-radius: 50%;
   overflow: hidden;
-  margin: 10px 10px 0 0
+  align-items: center;
 }
 
-header nav a {
+.logout-button {
+  display: flex;
+  text-decoration: none;
+  border: none;
+  align-content: center;
+  font-size: 22px;
 }
 
 .hidden-nav {
