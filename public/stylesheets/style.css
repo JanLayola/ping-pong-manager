@@ -119,12 +119,12 @@ section.testimonials .button {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 10%;
+  margin-top: 5%;
 }
 
 .container img {
   width: 60%;
-  margin: 13% 0 10% 0;
+  margin: 5% 0 10% 0;
 }
 
 @media (min-width: 700px) {
@@ -297,7 +297,7 @@ a {
   }
 }
 
-/* ---- dashboard page ---- */
+/* ---- header nav ---- */
 
 header {
   height: 50px;
@@ -315,4 +315,11 @@ header nav img {
   border-radius: 50%;
   overflow: hidden;
   margin: 10px 10px 0 0
+}
+
+header nav a {
+}
+
+.hidden-nav {
+  display: none;
 }

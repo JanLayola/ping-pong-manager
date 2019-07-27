@@ -10,13 +10,15 @@
 </head>
 
 <body>
-  <header>
     {{#if currentUser}}
+  <header>
      <nav>
-       <img src="{{user.image}}" alt="My profile">
+       <a class="hidden-nav" href="#">My Profile</a>
+       <a class="hidden-nav" href="#">Logout</a>
+       <img id="profile-nav" src="{{user.image}}" alt="My profile">
      </nav>
-    {{/if}}
   </header>
+    {{/if}}
   <main>
       {{{body}}}
   </main>
@@ -34,6 +36,7 @@
       {{/if}}
     </nav>
   </footer>
+  <script src="/javascripts/main.js"></script>
 </body>
 </html>
 
