@@ -2,7 +2,7 @@
 
 const isLoggedIn = (req, res, next) => {
   if (req.session.currentUser) {
-    return res.redirect('../users/tournaments');
+    return res.redirect(`/users/${req.session.currentUser.username}/tournaments`);
   }
   next();
 };

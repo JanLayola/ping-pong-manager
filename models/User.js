@@ -28,7 +28,7 @@ const userSchema = new Schema({
   },
   image: {
     type: String,
-    default: 'images/user-default.png'
+    default: '/images/user-default.png'
   },
   playedMatches: {
     type: Number,

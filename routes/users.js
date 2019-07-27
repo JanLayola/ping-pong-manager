@@ -4,14 +4,23 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
 
-const { isLoggedIn, isNotLoggedIn, isFormFilled } = require('../middlewares/authMiddlewares');
+const { isNotLoggedIn } = require('../middlewares/authMiddlewares');
 
 /* GET users listing. */
-router.get('/tournaments', isNotLoggedIn, (req, res, next) => {
-  const data = {
-    tournaments: true
-  };
-  res.render('tournaments', data);
+router.get('/:username/tournaments', isNotLoggedIn, async (req, res, next) => {
+  try {
+    const username = req.params;
+    console.log(username);
+    const user = await User.findOne(username);
+    console.log(user);
+    const data = {
+      tournaments: true,
+      user: user
+    };
+    res.render('tournaments', data);
+  } catch (error) {
+    next(error);
+  }
 });
 
 module.exports = router;
