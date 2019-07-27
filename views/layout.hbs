@@ -15,10 +15,12 @@
   </main>
   <footer>
     <nav>
-      {{#unless currentUser }}
-        <a href="/">Login</a>
-        <a href="/auth/signup">Signup</a>
-      {{/unless}}
+      {{#if login }}
+        <a class="full-nav" href="/auth/signup">Signup</a>
+      {{/if}}
+      {{#if signup }}
+        <a class="full-nav" href="/">Login</a>
+      {{/if}}
       {{#if tournaments}}
         <a href="/users/tournaments">Tournaments</a>
         <a href="/uyyh">Ranking</a>

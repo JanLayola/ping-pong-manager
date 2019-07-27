@@ -8,7 +8,10 @@ const { isLoggedIn, isNotLoggedIn, isFormFilled } = require('../middlewares/auth
 
 /* GET home page. */
 router.get('/', isLoggedIn, (req, res, next) => {
-  res.render('index');
+  const data = {
+    login: true
+  };
+  res.render('index', data);
 });
 
 module.exports = router;

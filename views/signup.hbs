@@ -6,7 +6,7 @@
     <input type="text" name="email" id="email" required placeholder="Email">
     <select name="country" id="country">
       <option value="" disabled selected value>--Select your country--</option>
-      {{#each countries}}
+      {{#each data.countries}}
       <option value="{{this}}">{{this}}</option>
       {{/each}}
     </select>
