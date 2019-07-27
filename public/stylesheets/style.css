@@ -231,7 +231,7 @@ section.testimonials .button {
 
 /* ---- navbar ---- */
 
-nav {
+footer nav {
   display: flex;
   flex-direction: row;
   background-color: #333;
@@ -297,4 +297,22 @@ a {
   }
 }
 
+/* ---- dashboard page ---- */
 
+header {
+  height: 50px;
+}
+
+header nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+header nav img {
+  width: 14%;
+  border: solid 2px black;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 10px 10px 0 0
+}

@@ -10,6 +10,13 @@
 </head>
 
 <body>
+  <header>
+    {{#if currentUser}}
+     <nav>
+       <img src="{{user.image}}" alt="My profile">
+     </nav>
+    {{/if}}
+  </header>
   <main>
       {{{body}}}
   </main>
