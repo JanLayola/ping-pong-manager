@@ -338,6 +338,16 @@ header nav img {
   display: none;
 }
 
+@media (min-width: 700px) {
+  header nav {
+    height: 75px;
+  }
+  header nav img {
+    width: 75px;
+    margin-right: 80px;
+  }
+}
+
 /* ---- My profile  ---- */
 
 .stats-box {

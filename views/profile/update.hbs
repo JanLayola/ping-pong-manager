@@ -1,1 +1,16 @@
-<p>Nokolas</p>
+<section class="container">
+<h1>Update your info</h1>
+  <form action="/users/profile/{{currentUser.username}}/update" method="POST">
+    <input type="text" name="username" id="username" required value="{{currentUser.username}}">
+    <input type="password" name="password" id="password" required placeholder="Password">
+    <input type="text" name="email" id="email" required value="{{currentUser.email}}">
+    <select name="country" id="country">
+      <option value="{{currentUser.country}}">{{currentUser.country}}</option>
+      {{#each countries}}
+      <option value="{{this}}">{{this}}</option>
+      {{/each}}
+    </select>
+    <input type="text" name="city" id="city" required value="{{currentUser.city}}">
+    <button type="submit" class="button">Update</button>
+  </form>
+</section>

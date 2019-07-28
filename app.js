@@ -18,8 +18,11 @@ const app = express();
 mongoose.connect('mongodb://localhost/PingPong', {
   keepAlive: true,
   useNewUrlParser: true,
-  reconnectTries: Number.MAX_VALUE
+  reconnectTries: Number.MAX_VALUE,
+  useFindAndModify: false
 });
+
+mongoose.set('useFindAndModify', false);
 
 app.use(session({
   store: new MongoStore({
