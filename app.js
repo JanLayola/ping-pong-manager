@@ -8,6 +8,7 @@ const mongoose = require('mongoose');
 const hbs = require('hbs');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
+const flash = require('connect-flash');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -42,6 +43,8 @@ app.use((req, res, next) => {
   app.locals.currentUser = req.session.currentUser;
   next();
 });
+
+app.use(flash());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

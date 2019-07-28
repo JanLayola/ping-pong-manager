@@ -13,6 +13,13 @@
     <input type="text" name="city" id="city" required placeholder="City">
     <label for="image"></label>
     <input type="file" name="image">
+    {{#if messages.length}}
+      <ul class="validation">
+        {{#each messages}}
+          <li>{{this}}</li>
+        {{/each}}
+      </ul>
+    {{/if}}
     <button type="submit" class="button">Sign Up</button>
   </form>
 </section>
