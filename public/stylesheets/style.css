@@ -317,13 +317,21 @@ header nav div {
   justify-content: space-around;
 }
 
-header nav img {
+.nav-img {
   display: flex;
-  width: 14%;
+  width: 68px;
+  height: 68px;
   border: solid 2px black;
   border-radius: 50%;
   overflow: hidden;
   align-items: center;
+  background-position: center;
+  background-size: cover;
+}
+ 
+#profile-nav {
+  height: 100%;
+  width: 100%;
 }
 
 .logout-button {

@@ -1,6 +1,6 @@
 <section class="container">
 <h1>Create your account</h1>
-  <form action="/auth/signup" method="post">
+  <form action="/auth/signup" method="post" enctype="multipart/form-data">
     <input type="text" name="username" id="username" required placeholder="Username">
     <input type="password" name="password" id="password" required placeholder="Password">
     <input type="text" name="email" id="email" required placeholder="Email">
@@ -11,6 +11,8 @@
       {{/each}}
     </select>
     <input type="text" name="city" id="city" required placeholder="City">
+    <label for="image"></label>
+    <input type="file" name="image">
     <button type="submit" class="button">Sign Up</button>
   </form>
 </section>

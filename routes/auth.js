@@ -2,6 +2,7 @@
 
 const express = require('express');
 const bcrypt = require('bcrypt');
+const parser = require('../config/cloudinary.js');
 
 const User = require('../models/User');
 const { isLoggedIn, isNotLoggedIn, isFormFilled } = require('../middlewares/authMiddlewares');
@@ -18,7 +19,8 @@ router.get('/signup', isLoggedIn, (req, res, next) => {
   res.render('signup', data);
 });
 
-router.post('/signup', isLoggedIn, isFormFilled, async (req, res, next) => {
+router.post('/signup', parser.single('image'), isLoggedIn, isFormFilled, async (req, res, next) => {
+  const imageurl = req.file.secure_url;
   try {
     const { username, password, email, city, country } = req.body;
     const salt = bcrypt.genSaltSync(saltRounds);
@@ -33,7 +35,8 @@ router.post('/signup', isLoggedIn, isFormFilled, async (req, res, next) => {
       password: hashedPassword,
       email,
       city,
-      country
+      country,
+      image: imageurl
     });
 
     req.session.currentUser = newUser;
