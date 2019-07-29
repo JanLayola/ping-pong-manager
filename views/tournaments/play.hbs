@@ -4,7 +4,10 @@
   <h3>{{name}}</h3>
   <p>{{location}}</p>
   <p>{{date}}</p>
-  <p>{{numberPlayers}}</p>
-  <button class="button">Join</button>
+  <p>{{players.length}}/{{numberPlayers}}</p>
+  <form action="/users/tournaments/{{_id}}" method="post">
+    <button class="button" id="{{_id}}" >Join</button>
+  </form>
 </article>
 {{/each}}
+

@@ -28,8 +28,11 @@ const tournamentSchema = new Schema({
   },
   image: {
     type: String
-  }
-
+  },
+  players: [{
+    type: ObjectId,
+    ref: 'User'
+  }]
 }, {
   timestamps: true
 });

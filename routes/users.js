@@ -106,7 +106,7 @@ router.post('/tournaments/create', parser.single('image'), isNotLoggedIn, async 
     }
     console.log(req.body);
 
-    const newTournament = await Tournament.create({
+    await Tournament.create({
       name,
       location,
       hostId: currentUser._id,
@@ -114,12 +114,32 @@ router.post('/tournaments/create', parser.single('image'), isNotLoggedIn, async 
       numberPlayers: players,
       image: imageurl
     });
-    /// ${currentUser.username}/tournaments
     res.redirect(`/users/${currentUser.username}/tournaments`);
   } catch (error) {
-    console.log(error);
     next(error);
   }
 });
 
+router.post('/tournaments/:id', isNotLoggedIn, async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const userId = req.session.currentUser._id;
+    const currentTournament = await Tournament.findById(id);
+    let inTournament = false;
+    currentTournament.players.forEach(player => {
+      console.log(player);
+      if (player.equals(userId)) {
+        inTournament = true;
+      }
+    });
+    if (!inTournament && currentTournament.players.length < 4) {
+      await Tournament.findByIdAndUpdate(id, { $push: { players: userId } });
+      res.redirect('tournaments/view');
+    } else {
+      console.log('No space for you fuck');
+    }
+  } catch (error) {
+    next(error);
+  }
+});
 module.exports = router;
