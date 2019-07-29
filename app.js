@@ -9,6 +9,7 @@ const hbs = require('hbs');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const flash = require('connect-flash');
+require('dotenv').config();
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -16,7 +17,7 @@ const authRouter = require('./routes/auth');
 
 const app = express();
 
-mongoose.connect('mongodb://localhost/PingPong', {
+mongoose.connect(process.env.MONGODB_URI, {
   keepAlive: true,
   useNewUrlParser: true,
   reconnectTries: Number.MAX_VALUE,
@@ -30,7 +31,7 @@ app.use(session({
     mongooseConnection: mongoose.connection,
     ttl: 24 * 60 * 60 // 1 day
   }),
-  secret: 'some-string', // don't push at github!!
+  secret: process.env.SECRET_SESSION, // don't push at github!!
   resave: true,
   saveUninitialized: true,
   cookie: {
