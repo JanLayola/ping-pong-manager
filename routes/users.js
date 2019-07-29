@@ -16,9 +16,11 @@ router.get('/:username/tournaments', isNotLoggedIn, async (req, res, next) => {
   try {
     const username = req.params;
     const user = await User.findOne(username);
+    const tournamentsList = await Tournament.find();
     const data = {
       tournaments: true,
-      user: user
+      user: user,
+      tournamentsList
     };
     res.render('tournaments/play', data);
   } catch (error) {
