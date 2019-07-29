@@ -16,19 +16,25 @@ router.get('/signup', isLoggedIn, (req, res, next) => {
     signup: true,
     messages: req.flash('errorFormNotFilled')
   };
-  console.log(data.countries);
   res.render('signup', data);
 });
 
 router.post('/signup', parser.single('image'), isLoggedIn, isFormFilled, async (req, res, next) => {
-  const imageurl = req.file.secure_url;
+  console.log('aqui estamos');
+
+  let imageurl = null;
+
+  if (req.file) {
+    console.log(req.file);
+    imageurl = req.file.secure_url;
+  }
   try {
     const { username, password, email, city, country } = req.body;
     const salt = bcrypt.genSaltSync(saltRounds);
     const hashedPassword = bcrypt.hashSync(password, salt);
     const user = await User.findOne({ username });
     if (user) {
-      return res.redirect('../users/{{username}}/tournaments');
+      return res.redirect('/');
     }
 
     const newUser = await User.create({
@@ -41,7 +47,7 @@ router.post('/signup', parser.single('image'), isLoggedIn, isFormFilled, async (
     });
 
     req.session.currentUser = newUser;
-    res.redirect('/users/{{username}}/tournaments');
+    res.redirect(`../users/${username}/tournaments`);
   } catch (error) {
     next(error);
   }
