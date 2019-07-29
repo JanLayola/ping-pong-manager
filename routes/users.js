@@ -3,7 +3,9 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
+const Tournament = require('../models/Tournament');
 const bcrypt = require('bcrypt');
+const parser = require('../config/cloudinary.js');
 
 const saltRounds = 10;
 
@@ -18,7 +20,7 @@ router.get('/:username/tournaments', isNotLoggedIn, async (req, res, next) => {
       tournaments: true,
       user: user
     };
-    res.render('tournaments', data);
+    res.render('tournaments/play', data);
   } catch (error) {
     next(error);
   }
@@ -74,6 +76,46 @@ router.post('/profile/:username/update', isNotLoggedIn, isFormFilled, async (req
 
     res.redirect('/users/{{currentUser.username}}/tournaments');
   } catch (error) {
+    next(error);
+  }
+});
+
+router.get('/:username/tournaments/create', isNotLoggedIn, async (req, res, next) => {
+  try {
+    const username = req.params;
+    const user = await User.findOne(username);
+    const data = {
+      tournaments: true,
+      user: user
+    };
+    res.render('tournaments/create', data);
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.post('/tournaments/create', parser.single('image'), isNotLoggedIn, async (req, res, next) => {
+  try {
+    const { name, location, date, players } = req.body;
+    const { currentUser } = req.session;
+    let imageurl = '';
+    if (req.file) {
+      imageurl = req.file.secure_url;
+    }
+    console.log(req.body);
+
+    const newTournament = await Tournament.create({
+      name,
+      location,
+      hostId: currentUser._id,
+      date,
+      numberPlayers: players,
+      image: imageurl
+    });
+    /// ${currentUser.username}/tournaments
+    res.redirect(`/users/${currentUser.username}/tournaments`);
+  } catch (error) {
+    console.log(error);
     next(error);
   }
 });

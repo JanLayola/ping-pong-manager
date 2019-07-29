@@ -37,9 +37,11 @@
         <a class="full-nav" href="/">Login</a>
       {{/if}}
       {{#if tournaments}}
-        <a href="/users/{{currentUser.username}}/tournaments">Tournaments</a>
+        <a href="/users/{{currentUser.username}}/tournaments">Play</a>
+        <a href="/users/{{currentUser.username}}/tournaments/create">Create</a>
         <a href="/uyyh">Ranking</a>
       {{/if}}
+
     </nav>
   </footer>
   <script src="/javascripts/main.js"></script>

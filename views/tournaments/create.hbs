@@ -1,0 +1,13 @@
+<section class="container">
+  <form action="/users/tournaments/create" method="post">
+    <input type="text" name="name" id="name" required placeholder="Name">
+    <input type="file" name="image">
+    <input type="date" name="date" id="date" required >
+    <input type="text" name="location" id="location" required placeholder="Location">
+    <select name="players" id="players">
+      <option value="" disabled selected value>--How many players??--</option>
+      <option value="4">4</option>
+    </select>
+    <button class="button" type="submit">Create tournament</button>
+  </form>
+</section>
