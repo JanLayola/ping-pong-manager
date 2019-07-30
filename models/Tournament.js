@@ -24,7 +24,7 @@ const tournamentSchema = new Schema({
   numberPlayers: {
     type: Number,
     required: true,
-    enum: [4]
+    enum: [4, 8, 16]
   },
   image: {
     type: String

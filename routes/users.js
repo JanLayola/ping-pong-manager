@@ -20,6 +20,8 @@ router.get('/:username/tournaments', isNotLoggedIn, async (req, res, next) => {
     tournamentsList.forEach((tournament) => {
       if (user._id.equals(tournament.hostID[0])) {
         tournament.iAmHost = true;
+      } if (tournament.fase1.length > 1 || tournament.fase2.length > 1 || tournament.fase3.length > 1) {
+        tournament.started = true;
       }
     });
     const data = {
@@ -142,8 +144,12 @@ router.post('/tournaments/:id/start', isNotLoggedIn, async (req, res, next) => {
       }
       return array;
     };
-    if (currentTournament.players === 4) {
-      await Tournament.findByIdAndUpdate({ $push: { fase1: currentTournament.players } });
+    if (currentTournament.players.length === 4) {
+      await Tournament.findByIdAndUpdate(id, { $push: { fase3: currentTournament.players } });
+    } else if (currentTournament.players.length === 8) {
+      await Tournament.findByIdAndUpdate(id, { $push: { fase2: currentTournament.players } });
+    } else if (currentTournament.players.length === 16) {
+      await Tournament.findByIdAndUpdate(id, { $push: { fase1: currentTournament.players } });
     }
     shuffle(array);
     console.log(array);
@@ -177,6 +183,22 @@ router.post('/tournaments/create', parser.single('image'), isNotLoggedIn, async 
   }
 });
 
+router.get('/tournaments/:id/live', isNotLoggedIn, async (req, res, next) => {
+  const { id } = req.params;
+
+  const tournament = await Tournament.findById(id).populate('fase3');
+  try {
+    const data = {
+      fase3: tournament.fase3,
+      name: tournament.name,
+      tournaments: true
+    };
+    res.render('tournaments/live', data);
+  } catch (error) {
+    next(error);
+  }
+});
+
 router.post('/tournaments/:id', isNotLoggedIn, async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -199,4 +221,5 @@ router.post('/tournaments/:id', isNotLoggedIn, async (req, res, next) => {
     next(error);
   }
 });
+
 module.exports = router;
