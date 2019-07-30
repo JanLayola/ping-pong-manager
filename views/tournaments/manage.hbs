@@ -8,11 +8,11 @@
     <p>{{location}}</p>
     <p>{{date}}</p>
     <p>{{players.length}}/{{numberPlayers}}</p>
-    <form action="/users/tournaments/{{_id}}" method="post">
-      <button class="button" id="{{_id}}" >Edit</button>
+    <form action="/users/tournaments/{{_id}}/edit" method="get">
+      <button class="button"  >Edit</button>
     </form>
     <form action="/users/tournaments/{{_id}}/start" method="post">
-      <button class="button" id="{{_id}}" >Start</button>
+      <button class="button">Start</button>
     </form>
   </article>
   {{/if}}

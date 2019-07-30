@@ -1,0 +1,18 @@
+<section class="container">
+  <form action="/users/tournaments/create" method="post">
+    <input type="text" name="name" id="name" require value="{{tournament.name}}">
+    <input type="date" name="date" id="date" required value="{{tournament.date}}">
+    <input type="text" name="location" id="location" require value="{{tournament.location}}">
+    <select name="players" id="players">
+      <option value="" disabled selected value>--How many players??--</option>
+      <option value="4">4</option>
+      <option value="8">8</option>
+      <option value="16">16</option>
+    </select>
+    <button class="button" type="submit">Update</button>
+  </form>
+  <p>test {{id}}</p>
+  <form action="/users/tournaments/{{id}}/delete" method="post">
+    <button class="button">Delete</button>
+  </form>
+</section>

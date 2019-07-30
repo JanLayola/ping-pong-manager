@@ -118,6 +118,29 @@ router.get('/:username/tournaments/create', isNotLoggedIn, async (req, res, next
   }
 });
 
+router.get('/tournaments/:id/edit', isNotLoggedIn, async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    const data = {
+      tournaments: true
+    };
+    res.render('tournaments/edit', { data, id });
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.post('/tournaments/:id/delete', isNotLoggedIn, async (req, res, next) => {
+  const { id } = req.params;
+  console.log(id);
+  try {
+    await Tournament.findByIdAndDelete(id);
+    res.redirect('/:username/tournaments');
+  } catch (error) {
+    next(error);
+  }
+});
+
 router.get('/:username/tournaments/ranking', isNotLoggedIn, async (req, res, next) => {
   try {
     const data = {
