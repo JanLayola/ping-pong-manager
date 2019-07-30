@@ -48,7 +48,11 @@ const tournamentSchema = new Schema({
   winner: [{
     type: ObjectId,
     ref: 'User'
-  }]
+  }],
+  started: {
+    type: Boolean,
+    default: false
+  }
 }, {
   timestamps: true
 });

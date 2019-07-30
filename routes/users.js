@@ -142,6 +142,9 @@ router.post('/tournaments/:id/start', isNotLoggedIn, async (req, res, next) => {
       }
       return array;
     };
+    if (currentTournament.players === 4) {
+      await Tournament.findByIdAndUpdate({ $push: { fase1: currentTournament.players } });
+    }
     shuffle(array);
     console.log(array);
   } catch (error) {
