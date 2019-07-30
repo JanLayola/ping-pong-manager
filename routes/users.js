@@ -124,6 +124,31 @@ router.get('/:username/tournaments/manage', isNotLoggedIn, async (req, res, next
   }
 });
 
+router.post('/tournaments/:id/start', isNotLoggedIn, async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const currentTournament = await Tournament.findById(id);
+    const array = currentTournament.players;
+    const shuffle = () => {
+      let currentIndex = array.length;
+      let temporaryValue;
+      let randomIndex;
+      while (currentIndex !== 0) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+      }
+      return array;
+    };
+    shuffle(array);
+    console.log(array);
+  } catch (error) {
+    next(error);
+  }
+});
+
 router.post('/tournaments/create', parser.single('image'), isNotLoggedIn, async (req, res, next) => {
   try {
     const { name, location, date, players } = req.body;

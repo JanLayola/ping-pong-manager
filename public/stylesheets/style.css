@@ -330,8 +330,11 @@ header nav div {
 }
  
 #profile-nav {
-  height: 100%;
-  width: 100%;
+  width: 68px;
+  height: 68px;
+  border: solid 2px black;
+  border-radius: 50%;
+  
 }
 
 .logout-button {

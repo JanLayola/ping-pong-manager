@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 const parser = require('../config/cloudinary.js');
 
 const User = require('../models/User');
-const { isLoggedIn, isNotLoggedIn, isFormFilled } = require('../middlewares/authMiddlewares');
+const { isLoggedIn, isNotLoggedIn, isFormFilled, isLoginFilled } = require('../middlewares/authMiddlewares');
 
 const router = express.Router();
 const saltRounds = 10;
@@ -20,8 +20,6 @@ router.get('/signup', isLoggedIn, (req, res, next) => {
 });
 
 router.post('/signup', parser.single('image'), isLoggedIn, isFormFilled, async (req, res, next) => {
-  console.log('aqui estamos');
-
   let imageurl = null;
 
   if (req.file) {
@@ -53,25 +51,26 @@ router.post('/signup', parser.single('image'), isLoggedIn, isFormFilled, async (
   }
 });
 
-router.post('/login', isLoggedIn, isFormFilled, async (req, res, next) => {
+router.post('/login', isLoggedIn, isLoginFilled, async (req, res, next) => {
   const { username, password } = req.body;
-
+  console.log('posting');
   try {
     const user = await User.findOne({ username });
     if (!user) {
+      console.log('no user');
       return res.redirect('/');
     }
     if (bcrypt.compareSync(password, user.password)) {
       req.session.currentUser = user;
-      res.redirect('/');
+      console.log('logging in ');
+      res.redirect(`/users/${req.session.currentUser.username}/tournaments`);
     } else {
+      console.log('wrong password');
       res.redirect('/');
     }
   } catch (error) {
     next(error);
   }
-
-  res.redirect(`/users/${req.session.currentUser.username}/tournaments`);
 });
 
 router.post('/logout', isNotLoggedIn, (req, res, next) => {

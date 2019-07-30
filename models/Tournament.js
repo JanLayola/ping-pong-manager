@@ -32,6 +32,22 @@ const tournamentSchema = new Schema({
   players: [{
     type: ObjectId,
     ref: 'User'
+  }],
+  fase1: [{
+    type: ObjectId,
+    ref: 'User'
+  }],
+  fase2: [{
+    type: ObjectId,
+    ref: 'User'
+  }],
+  fase3: [{
+    type: ObjectId,
+    ref: 'User'
+  }],
+  winner: [{
+    type: ObjectId,
+    ref: 'User'
   }]
 }, {
   timestamps: true

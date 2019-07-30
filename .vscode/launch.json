@@ -13,6 +13,6 @@
       "restart": true,
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen"
-    }
+    },
   ]
 }
