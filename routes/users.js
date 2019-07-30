@@ -92,17 +92,18 @@ router.post('/profile/:username/update', isNotLoggedIn, isFormFilled, async (req
 
 router.post('/tournament/:id/results', isNotLoggedIn, async (req, res, next) => {
   try {
-    const { winner } = req.body;
+    const { winner, champion } = req.body;
     console.log(req.body);
     console.log(winner);
     const id = req.params.id;
-    // const losiento = await Tournament.findById(id).populate('players');
-    // console.log(losiento);
     await Tournament.findByIdAndUpdate(id, { $push: { fase4: winner } });
+    await Tournament.findByIdAndUpdate(id, { $push: { winner: champion } });
+    res.redirect(`/users/tournaments/${id}/live`);
   } catch (error) {
     next(error);
   }
 });
+
 router.get('/:username/tournaments/create', isNotLoggedIn, async (req, res, next) => {
   try {
     const username = req.params;
@@ -210,13 +211,17 @@ router.post('/tournaments/create', parser.single('image'), isNotLoggedIn, async 
 router.get('/tournaments/:id/live', isNotLoggedIn, async (req, res, next) => {
   const { id } = req.params;
 
-  const tournament = await Tournament.findById(id).populate('fase3');
+  const tournamentF3 = await Tournament.findById(id).populate('fase3');
+  const tournamentF4 = await Tournament.findById(id).populate('fase4');
+  const winner = await Tournament.findById(id).populate('winner');
   try {
     const data = {
-      fase3: tournament.fase3,
-      name: tournament.name,
+      fase3: tournamentF3.fase3,
+      fase4: tournamentF4.fase4,
+      winner: winner.winner,
+      name: tournamentF3.name,
       tournaments: true,
-      id: tournament._id
+      id: tournamentF3._id
     };
     res.render('tournaments/live', data);
   } catch (error) {
