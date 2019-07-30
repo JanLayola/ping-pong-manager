@@ -13,10 +13,10 @@ const tournamentSchema = new Schema({
     type: String,
     required: true
   },
-  hostID: {
+  hostID: [{
     type: ObjectId,
     ref: 'User'
-  },
+  }],
   date: {
     type: String,
     required: true

@@ -94,6 +94,8 @@ p {
   font-weight: 400;
   font-size: 1.1em;
   margin-top: 5%;
+  opacity: 1;
+
 }
 
 
@@ -321,15 +323,10 @@ header nav div {
 }
 
 .nav-img {
-  display: flex;
   width: 68px;
   height: 68px;
   border: solid 2px black;
   border-radius: 50%;
-  overflow: hidden;
-  align-items: center;
-  background-position: center;
-  background-size: cover;
 }
  
 #profile-nav {

@@ -17,9 +17,15 @@ router.get('/:username/tournaments', isNotLoggedIn, async (req, res, next) => {
     const username = req.params;
     const user = await User.findOne(username);
     const tournamentsList = await Tournament.find();
+    tournamentsList.forEach((tournament) => {
+      if (user._id.equals(tournament.hostID[0])) {
+        tournament.iAmHost = true;
+      }
+    });
     const data = {
       tournaments: true,
       user: user,
+      userId: user._id,
       tournamentsList
     };
     res.render('tournaments/play', data);
@@ -96,6 +102,28 @@ router.get('/:username/tournaments/create', isNotLoggedIn, async (req, res, next
   }
 });
 
+router.get('/:username/tournaments/manage', isNotLoggedIn, async (req, res, next) => {
+  try {
+    const username = req.params;
+    const user = await User.findOne(username);
+    const tournamentsList = await Tournament.find();
+    tournamentsList.forEach((tournament) => {
+      if (user._id.equals(tournament.hostID[0])) {
+        tournament.iAmHost = true;
+      }
+    });
+    const data = {
+      tournaments: true,
+      user: user,
+      userId: user._id,
+      tournamentsList
+    };
+    res.render('tournaments/manage', data);
+  } catch (error) {
+    next(error);
+  }
+});
+
 router.post('/tournaments/create', parser.single('image'), isNotLoggedIn, async (req, res, next) => {
   try {
     const { name, location, date, players } = req.body;
@@ -106,14 +134,15 @@ router.post('/tournaments/create', parser.single('image'), isNotLoggedIn, async 
     }
     console.log(req.body);
 
-    await Tournament.create({
+    const response = await Tournament.create({
       name,
       location,
-      hostId: currentUser._id,
       date,
       numberPlayers: players,
       image: imageurl
     });
+    const userId = req.session.currentUser._id;
+    await Tournament.findByIdAndUpdate(response._id, { $push: { hostID: userId } });
     res.redirect(`/users/${currentUser.username}/tournaments`);
   } catch (error) {
     next(error);

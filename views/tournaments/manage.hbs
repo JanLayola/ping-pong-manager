@@ -1,0 +1,20 @@
+<a class="button" href="/users/{{currentUser.username}}/tournaments/create">Create</a>
+<section>
+  <h2></h2>
+{{#each tournamentsList}}
+  {{#if iAmHost}}
+   <article>
+    <h3>{{name}}</h3>
+    <p>{{location}}</p>
+    <p>{{date}}</p>
+    <p>{{players.length}}/{{numberPlayers}}</p>
+    <form action="/users/tournaments/{{_id}}" method="post">
+      <button class="button" id="{{_id}}" >Edit</button>
+    </form>
+    <form action="/users/tournaments/{{_id}}" method="post">
+      <button class="button" id="{{_id}}" >Start</button>
+    </form>
+  </article>
+  {{/if}}
+{{/each}}
+</section>
