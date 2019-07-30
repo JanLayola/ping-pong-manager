@@ -1,16 +1,16 @@
 <h3>{{name}} main draw</h3>
-<form action="users/tournament/{{_id}}/results" method="POST">
+<form action="/users/tournament/{{id}}/results" method="POST">
   <p>{{fase3.[0].username}} vs {{fase3.[1].username}}</p>  
-    <select name="winner" id="winner">
+    <select name="winner" id="winner1">
     <option value="" disabled selected value>Who wins?</option>
-    <option value="" value>{{fase3.[0].username}}</option>
-    <option value="" value>{{fase3.[1].username}}</option>
+    <option value="{{fase3.[0]._id}}">{{fase3.[0].username}}</option>
+    <option value="{{fase3.[1]._id}}" value>{{fase3.[1].username}}</option>
    </select>
   <p>{{fase3.[2].username}} vs {{fase3.[3].username}}</p>
-    <select name="winner" id="winner">
+    <select name="winner" id="winner2">
     <option value="" disabled selected value>Who wins?</option>
-    <option value="" value>{{fase3.[2].username}}</option>
-    <option value="" value>{{fase3.[3].username}}</option>
+    <option value="{{fase3.[2]._id}}" value>{{fase3.[2].username}}</option>
+    <option value="{{fase3.[3]._id}}" value>{{fase3.[3].username}}</option>
     </select>
   <button class="button" type="submit">Send results</button>
 </form>

@@ -45,7 +45,14 @@ const tournamentSchema = new Schema({
     type: ObjectId,
     ref: 'User'
   }],
+  fase4: [{
+    type: ObjectId,
+    ref: 'User'
+  }],
   results3: [{
+    type: String
+  }],
+  results4: [{
     type: String
   }],
   winner: [{

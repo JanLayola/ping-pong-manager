@@ -90,6 +90,19 @@ router.post('/profile/:username/update', isNotLoggedIn, isFormFilled, async (req
   }
 });
 
+router.post('/tournament/:id/results', isNotLoggedIn, async (req, res, next) => {
+  try {
+    const { winner } = req.body;
+    console.log(req.body);
+    console.log(winner);
+    const id = req.params.id;
+    // const losiento = await Tournament.findById(id).populate('players');
+    // console.log(losiento);
+    await Tournament.findByIdAndUpdate(id, { $push: { fase4: winner } });
+  } catch (error) {
+    next(error);
+  }
+});
 router.get('/:username/tournaments/create', isNotLoggedIn, async (req, res, next) => {
   try {
     const username = req.params;
@@ -202,7 +215,8 @@ router.get('/tournaments/:id/live', isNotLoggedIn, async (req, res, next) => {
     const data = {
       fase3: tournament.fase3,
       name: tournament.name,
-      tournaments: true
+      tournaments: true,
+      id: tournament._id
     };
     res.render('tournaments/live', data);
   } catch (error) {
