@@ -104,6 +104,17 @@ router.get('/:username/tournaments/create', isNotLoggedIn, async (req, res, next
   }
 });
 
+router.get('/:username/tournaments/ranking', isNotLoggedIn, async (req, res, next) => {
+  try {
+    const data = {
+      tournaments: true
+    };
+    res.render('tournaments/ranking', data);
+  } catch (error) {
+    next(error);
+  }
+});
+
 router.get('/:username/tournaments/manage', isNotLoggedIn, async (req, res, next) => {
   try {
     const username = req.params;
@@ -152,7 +163,7 @@ router.post('/tournaments/:id/start', isNotLoggedIn, async (req, res, next) => {
       await Tournament.findByIdAndUpdate(id, { $push: { fase1: currentTournament.players } });
     }
     shuffle(array);
-    console.log(array);
+    res.redirect(`/users/tournaments/${currentTournament._id}/live`);
   } catch (error) {
     next(error);
   }
