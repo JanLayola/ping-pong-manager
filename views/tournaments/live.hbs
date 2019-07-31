@@ -3,6 +3,9 @@
 
 <section class="round-container">
   {{#if fase1.length}}
+  <section>
+
+ 
         <section>
       <form action="/users/tournament/{{id}}/results" method="POST">
           <h3>Quarter-final</h3>
@@ -92,6 +95,7 @@
         {{/unless}}
         </section>
       </form>
+       </section>
     {{/if}}
 </section>
 <section>
@@ -202,12 +206,15 @@
         {{/unless}}
         {{/if}}
       </form>
+</section>
     {{/if}}
 
     {{#if winner.length}}
-    <form>
+    <section>
+      <form>
         <p class="champion">The Champion is {{winner.[0].username}} !</p>
     </form>
+    </section>
+    
   {{/if}}
-  <section>
-</section>
+ 

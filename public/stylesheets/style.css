@@ -54,6 +54,7 @@ p {
   text-align: center;
   margin-right: 20px;
   margin-left: 15px;
+  color: #F7CB2D;
 }
 
 
@@ -531,5 +532,10 @@ header nav div {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  align-items: center
+  align-items: center;
+  height: 500px;
+}
+
+.space {
+  width: 50%;
 }
