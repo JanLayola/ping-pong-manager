@@ -2,6 +2,9 @@
   <a class="button" href="/users/{{currentUser.username}}/tournaments/create">Create</a>
 </div>
 <section class="card-container">
+{{#unless tournamentsList}}
+  <p class='info'>You didn't create any tournament, you can create one in the manage screen...</p>
+{{/unless}}
 {{#each tournamentsList}}
   {{#if iAmHost}}
    <article>
