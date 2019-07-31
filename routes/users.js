@@ -270,6 +270,7 @@ router.post('/tournaments/:id', isNotLoggedIn, async (req, res, next) => {
   try {
     const { id } = req.params;
     const userId = req.session.currentUser._id;
+    const username = req.session.currentUser.username;
     const currentTournament = await Tournament.findById(id);
     let inTournament = false;
     currentTournament.players.forEach(player => {
@@ -280,10 +281,10 @@ router.post('/tournaments/:id', isNotLoggedIn, async (req, res, next) => {
     });
     if (!inTournament && currentTournament.players.length < currentTournament.numberPlayers) {
       await Tournament.findByIdAndUpdate(id, { $push: { players: userId } });
-      res.redirect('tournaments/view');
     } else {
       console.log('No space for you fuck');
-    }
+    };
+    res.redirect(`/users/${username}/tournaments`);
   } catch (error) {
     next(error);
   }
