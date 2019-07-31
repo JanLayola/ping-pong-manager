@@ -156,10 +156,10 @@ router.get('/tournaments/:id/edit', isNotLoggedIn, async (req, res, next) => {
 
 router.post('/tournaments/:id/delete', isNotLoggedIn, async (req, res, next) => {
   const { id } = req.params;
-  console.log(id);
+  const { currentUser } = req.session;
   try {
     await Tournament.findByIdAndDelete(id);
-    res.redirect('/:username/tournaments');
+    res.redirect(`/users/${currentUser.username}/tournaments`);
   } catch (error) {
     next(error);
   }
