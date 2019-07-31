@@ -93,32 +93,34 @@ router.post('/profile/:username/update', isNotLoggedIn, isFormFilled, async (req
 router.post('/tournament/:id/results', isNotLoggedIn, async (req, res, next) => {
   try {
     const { id } = req.params;
-    // const { winnerf2, winnerf3, winnerf1, champion } = req.body;
+    const { winnerf2, winnerf3, winnerf1, champion } = req.body;
     const currentTournament = await Tournament.findById(id);
     const players = currentTournament.players;
     console.log(players[0]);
     for (let i = 0; i < players.length; i++) {
       const currentUser = req.session.currentUser._id;
-      console.log(players[i]);
-      console.log(currentUser);
-      if (players[i] === req.session.currentUser._id) {
+      // console.log(players[i]);
+      // console.log(currentUser);
+      if (players[i] == currentUser) {
         console.log('heeeeeey');
+        if (currentTournament.fase2.length === 0 && currentTournament.fase3.length === 0 && winnerf1) {
+          await Tournament.findByIdAndUpdate(id, { $push: { fase2: winnerf1 } });
+        } else if (currentTournament.fase3.length === 0 && currentTournament.fase4.length === 0 && winnerf2) {
+          await Tournament.findByIdAndUpdate(id, { $push: { fase3: winnerf2 } });
+        } else if (currentTournament.fase4.length === 0 && currentTournament.winner.length === 0 && winnerf3) {
+          console.log(id, winnerf3);
+          await Tournament.findByIdAndUpdate(id, { $push: { fase4: winnerf3 } });
+        } else if (currentTournament.fase4.length && champion) {
+          console.log('winner', champion, id);
+          await Tournament.findByIdAndUpdate(id, { $push: { winner: champion } });
+        } else {
+          console.log('no champion or winner 3 yet');
+        }
+        res.redirect(`/users/tournaments/${id}/live`);
+      } else {
+        console.log('uuuuhhhhhhhh');
       }
     }
-    // if (currentTournament.fase2.length === 0 && currentTournament.fase3.length === 0 && winnerf1) {
-    //   await Tournament.findByIdAndUpdate(id, { $push: { fase2: winnerf1 } });
-    // } else if (currentTournament.fase3.length === 0 && currentTournament.fase4.length === 0 && winnerf2) {
-    //   await Tournament.findByIdAndUpdate(id, { $push: { fase3: winnerf2 } });
-    // } else if (currentTournament.fase4.length === 0 && currentTournament.winner.length === 0 && winnerf3) {
-    //   console.log(id, winnerf3);
-    //   await Tournament.findByIdAndUpdate(id, { $push: { fase4: winnerf3 } });
-    // } else if (currentTournament.fase4.length && champion) {
-    //   console.log('winner', champion, id);
-    //   await Tournament.findByIdAndUpdate(id, { $push: { winner: champion } });
-    // } else {
-    //   console.log('no champion or winner 3 yet');
-    // }
-    // res.redirect(`/users/tournaments/${id}/live`);
 
     res.redirect(`/users/tournaments/${id}/live`);
   } catch (error) {
