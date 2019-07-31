@@ -314,6 +314,7 @@ header nav {
   justify-content: flex-end;
   align-items: center;
   margin: 10px 10px 0 0;
+  height: 70px;
 }
 
 header nav div {
@@ -330,8 +331,8 @@ header nav div {
 }
  
 #profile-nav {
-  width: 68px;
-  height: 68px;
+  width: 63px;
+  height: 63px;
   border: solid 2px black;
   border-radius: 50%;
   

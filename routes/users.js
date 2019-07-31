@@ -92,12 +92,21 @@ router.post('/profile/:username/update', isNotLoggedIn, isFormFilled, async (req
 
 router.post('/tournament/:id/results', isNotLoggedIn, async (req, res, next) => {
   try {
-    const { winner, champion } = req.body;
-    console.log(req.body);
-    console.log(winner);
-    const id = req.params.id;
-    await Tournament.findByIdAndUpdate(id, { $push: { fase4: winner } });
-    await Tournament.findByIdAndUpdate(id, { $push: { winner: champion } });
+    const { id } = req.params;
+    const { winnerf2, winnerf3, champion } = req.body;
+    const currentTournament = await Tournament.findById(id);
+    if (currentTournament.fase3.length === 0 && currentTournament.fase4.length === 0) {
+      await Tournament.findByIdAndUpdate(id, { $push: { fase3: winnerf2 } });
+    }
+    if (currentTournament.fase4.length === 0 && currentTournament.winner.length === 0 && winnerf3) {
+      console.log(id, winnerf3);
+      await Tournament.findByIdAndUpdate(id, { $push: { fase4: winnerf3 } });
+    } else if (currentTournament.fase4.length && champion) {
+      console.log('winner', champion, id);
+      await Tournament.findByIdAndUpdate(id, { $push: { winner: champion } });
+    } else {
+      console.log('no champion or winner 3 yet');
+    }
     res.redirect(`/users/tournaments/${id}/live`);
   } catch (error) {
     next(error);
@@ -179,6 +188,7 @@ router.post('/tournaments/:id/start', isNotLoggedIn, async (req, res, next) => {
     const { id } = req.params;
     const currentTournament = await Tournament.findById(id);
     const array = currentTournament.players;
+    console.log(array);
     const shuffle = () => {
       let currentIndex = array.length;
       let temporaryValue;
@@ -190,8 +200,10 @@ router.post('/tournaments/:id/start', isNotLoggedIn, async (req, res, next) => {
         array[currentIndex] = array[randomIndex];
         array[randomIndex] = temporaryValue;
       }
+      console.log(array);
       return array;
     };
+    shuffle(array);
     if (currentTournament.players.length === 4) {
       await Tournament.findByIdAndUpdate(id, { $push: { fase3: currentTournament.players } });
     } else if (currentTournament.players.length === 8) {
@@ -199,7 +211,6 @@ router.post('/tournaments/:id/start', isNotLoggedIn, async (req, res, next) => {
     } else if (currentTournament.players.length === 16) {
       await Tournament.findByIdAndUpdate(id, { $push: { fase1: currentTournament.players } });
     }
-    shuffle(array);
     res.redirect(`/users/tournaments/${currentTournament._id}/live`);
   } catch (error) {
     next(error);
@@ -233,12 +244,15 @@ router.post('/tournaments/create', parser.single('image'), isNotLoggedIn, async 
 
 router.get('/tournaments/:id/live', isNotLoggedIn, async (req, res, next) => {
   const { id } = req.params;
-
+  const tournamentF1 = await Tournament.findById(id).populate('fase1');
+  const tournamentF2 = await Tournament.findById(id).populate('fase2');
   const tournamentF3 = await Tournament.findById(id).populate('fase3');
   const tournamentF4 = await Tournament.findById(id).populate('fase4');
   const winner = await Tournament.findById(id).populate('winner');
   try {
     const data = {
+      fase1: tournamentF1.fase1,
+      fase2: tournamentF2.fase2,
       fase3: tournamentF3.fase3,
       fase4: tournamentF4.fase4,
       winner: winner.winner,
@@ -264,7 +278,7 @@ router.post('/tournaments/:id', isNotLoggedIn, async (req, res, next) => {
         inTournament = true;
       }
     });
-    if (!inTournament && currentTournament.players.length < 4) {
+    if (!inTournament && currentTournament.players.length < currentTournament.numberPlayers) {
       await Tournament.findByIdAndUpdate(id, { $push: { players: userId } });
       res.redirect('tournaments/view');
     } else {
