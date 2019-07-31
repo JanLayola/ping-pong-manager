@@ -1,4 +1,7 @@
 <section class="card-container">
+  {{#unless tournamentsList}}
+  <p class='info'>There's no tournament avaible now, you can create one in the manage screen...</p>
+  {{/unless}}
   {{#each tournamentsList}}
   <article>
     <div>
