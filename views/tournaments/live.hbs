@@ -2,6 +2,103 @@
 
 
 <section class="round-container">
+
+  {{#if fase1.length}}
+      <form action="/users/tournament/{{id}}/results" method="POST">
+        <section>
+          <h3>Quarter-final</h3>
+          <p>{{fase1.[0].username}} vs {{fase1.[1].username}}</p>  
+          {{#unless fase2.length}}
+            <select class="select-css" name="winnerf1" id="winner1">
+              <option value="" disabled selected value>Who wins?</option>
+              <option value="{{fase1.[0]._id}}">{{fase1.[0].username}}</option>
+              <option value="{{fase1.[1]._id}}" value>{{fase1.[1].username}}</option>
+            </select>
+          </section>
+          {{/unless}}
+        
+        <section>
+          <p>{{fase1.[2].username}} vs {{fase1.[3].username}}</p>
+          {{#unless fase2.length}}
+          <select class="select-css" name="winnerf1" id="winner2">
+            <option value="" disabled selected value>Who wins?</option>
+            <option value="{{fase1.[2]._id}}" value>{{fase1.[2].username}}</option>
+            <option value="{{fase1.[3]._id}}" value>{{fase1.[3].username}}</option>
+          </select>
+          {{/unless}}
+        </section>
+        <section>
+          <p>{{fase1.[4].username}} vs {{fase1.[5].username}}</p>  
+          {{#unless fase2.length}}
+          <select class="select-css" name="winnerf1" id="winner1">
+            <option value="" disabled selected value>Who wins?</option>
+            <option value="{{fase1.[4]._id}}">{{fase1.[4].username}}</option>
+            <option value="{{fase1.[5]._id}}" value>{{fase1.[5].username}}</option>
+          </select>
+          {{/unless}}
+        </section>
+        <section>
+          <p>{{fase1.[6].username}} vs {{fase1.[7].username}}</p>
+          {{#unless fase2.length}}
+          <select class="select-css" name="winnerf1" id="winner2">
+            <option value="" disabled selected value>Who wins?</option>
+            <option value="{{fase1.[6]._id}}" value>{{fase1.[6].username}}</option>
+            <option value="{{fase1.[7]._id}}" value>{{fase1.[7].username}}</option>
+          </select>
+          {{/unless}}
+        </section>
+        <section>
+          <p>{{fase1.[8].username}} vs {{fase1.[9].username}}</p>  
+          {{#unless fase2.length}}
+            <select class="select-css" name="winnerf1" id="winner1">
+              <option value="" disabled selected value>Who wins?</option>
+              <option value="{{fase1.[8]._id}}">{{fase1.[8].username}}</option>
+              <option value="{{fase1.[9]._id}}" value>{{fase1.[9].username}}</option>
+            </select>
+          {{/unless}}
+        </section>
+        <section>
+          <p>{{fase1.[10].username}} vs {{fase1.[11].username}}</p>
+          {{#unless fase2.length}}
+          <select class="select-css" name="winnerf1" id="winner2">
+            <option value="" disabled selected value>Who wins?</option>
+            <option value="{{fase1.[10]._id}}" value>{{fase1.[10].username}}</option>
+            <option value="{{fase1.[11]._id}}" value>{{fase1.[11].username}}</option>
+          </select>
+          {{/unless}}
+        </section>
+        <section>
+          <p>{{fase1.[12].username}} vs {{fase1.[13].username}}</p>  
+          {{#unless fase2.length}}
+          <select class="select-css" name="winnerf1" id="winner1">
+            <option value="" disabled selected value>Who wins?</option>
+            <option value="{{fase2.[12]._id}}">{{fase1.[12].username}}</option>
+            <option value="{{fase2.[13]._id}}" value>{{fase1.[13].username}}</option>
+          </select>
+          {{/unless}}
+        </section>
+        <section>
+          <p>{{fase1.[14].username}} vs {{fase1.[15].username}}</p>
+          {{#unless fase2.length}}
+          <select class="select-css" name="winnerf1" id="winner2">
+            <option value="" disabled selected value>Who wins?</option>
+            <option value="{{fase1.[14]._id}}" value>{{fase1.[14].username}}</option>
+            <option value="{{fase1.[15]._id}}" value>{{fase1.[15].username}}</option>
+          </select>
+          {{/unless}}
+        </section>
+        <section>
+        {{#unless fase2.length}}
+          <button class="button" type="submit">Send results</button>
+        {{/unless}}
+        </section>
+      </form>
+      </section>
+    {{/if}}
+<section>
+
+
+
   {{#if fase2.length}}
       <form action="/users/tournament/{{id}}/results" method="POST">
         <section>

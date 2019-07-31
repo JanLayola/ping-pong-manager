@@ -515,7 +515,7 @@ header nav div {
   flex-direction: row;
   justify-items: center;
   overflow: scroll;
-  height: 400px;
+  height: 1000px;
 }
 
 .round-container section {

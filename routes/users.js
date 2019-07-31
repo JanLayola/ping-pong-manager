@@ -93,12 +93,13 @@ router.post('/profile/:username/update', isNotLoggedIn, isFormFilled, async (req
 router.post('/tournament/:id/results', isNotLoggedIn, async (req, res, next) => {
   try {
     const { id } = req.params;
-    const { winnerf2, winnerf3, champion } = req.body;
+    const { winnerf2, winnerf3, winnerf1, champion } = req.body;
     const currentTournament = await Tournament.findById(id);
-    if (currentTournament.fase3.length === 0 && currentTournament.fase4.length === 0) {
+    if (currentTournament.fase2.length === 0 && currentTournament.fase3.length === 0 && winnerf1) {
+      await Tournament.findByIdAndUpdate(id, { $push: { fase3: winnerf1 } });
+    } else if (currentTournament.fase3.length === 0 && currentTournament.fase4.length === 0 && winnerf2) {
       await Tournament.findByIdAndUpdate(id, { $push: { fase3: winnerf2 } });
-    }
-    if (currentTournament.fase4.length === 0 && currentTournament.winner.length === 0 && winnerf3) {
+    } else if (currentTournament.fase4.length === 0 && currentTournament.winner.length === 0 && winnerf3) {
       console.log(id, winnerf3);
       await Tournament.findByIdAndUpdate(id, { $push: { fase4: winnerf3 } });
     } else if (currentTournament.fase4.length && champion) {
