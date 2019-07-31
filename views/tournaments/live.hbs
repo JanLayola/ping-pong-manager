@@ -2,7 +2,7 @@
 
 
 <section class="fase2">
-  <h2>FASE 2</h2>
+  <h2>Quarter-final</h2>
 {{#if fase2.length}}
   <form action="/users/tournament/{{id}}/results" method="POST">
     <p>{{fase2.[0].username}} vs {{fase2.[1].username}}</p>  
@@ -45,7 +45,7 @@
 {{/if}}
 
   <section>
-      <h2>FASE 3</h2>
+      <h2>Semi-final</h2>
 {{#if fase3.length}}
     <form action="/users/tournament/{{id}}/results" method="POST">
       <p>{{fase3.[0].username}} vs {{fase3.[1].username}}</p>
@@ -71,25 +71,27 @@
   </section>
  {{/if}}
 
-
-{{#if fase4.length}}
-  <form action="/users/tournament/{{id}}/results" method="POST">
-  <p>{{fase4.[0].username}} vs {{fase4.[1].username}}</p>  
-  {{#if fase4.length }}
-  {{#unless winner.length}}
-  <select name="champion" id="winner1">
-    <option value="" disabled selected value>Who wins?</option>
-    <option value="{{fase4.[0]._id}}">{{fase4.[0].username}}</option>
-    <option value="{{fase4.[1]._id}}" value>{{fase4.[1].username}}</option>
-   </select>
-   {{/unless}}
-   {{/if}}
-   <p>The winner is {{winner.[0].username}}!</p>
-   {{#if fase4.length}}
-  {{#unless winner.length}}
-  <button class="button" type="submit">Send results</button>
-  {{/unless}}
-  {{/if}}
-</form>
+<section>
+  <h2>Final</h2>
+  {{#if fase4.length}}
+    <form action="/users/tournament/{{id}}/results" method="POST">
+    <p>{{fase4.[0].username}} vs {{fase4.[1].username}}</p>  
+    {{#if fase4.length }}
+    {{#unless winner.length}}
+    <select name="champion" id="winner1">
+      <option value="" disabled selected value>Who wins?</option>
+      <option value="{{fase4.[0]._id}}">{{fase4.[0].username}}</option>
+      <option value="{{fase4.[1]._id}}" value>{{fase4.[1].username}}</option>
+    </select>
+    {{/unless}}
+    {{/if}}
+    <p>The Champion is {{winner.[0].username}}!</p>
+    {{#if fase4.length}}
+    {{#unless winner.length}}
+    <button class="button" type="submit">Send results</button>
+    {{/unless}}
+    {{/if}}
+  </form>
+</section>
 {{/if}}
 

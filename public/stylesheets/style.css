@@ -36,10 +36,13 @@ h1 {
 
 h2 {}
 
-h3 {}
+h3 {
+  font-weight: 400;
+}
 
 p {
   margin: 0;
+  font-weight: 200;
 }
 
 
@@ -97,6 +100,27 @@ p {
   opacity: 1;
 
 }
+
+.button-start {
+  padding: 0.28em 0.5em;
+  background-color: #F7CB2D;
+  color: black;
+  border: none;
+  text-align: center;
+  border-radius: 1em;
+  text-decoration: none;
+  font-size: 1.1em;
+  margin-top: 23px;
+  opacity: 1;
+}
+
+.button-edit {
+  background-color: rgb(245,245,245, 0);
+  border: none;
+  border-radius: 1em;
+  padding: 0;
+}
+
 
 
 .button-alt {
@@ -371,14 +395,31 @@ header nav div {
 
 /* ---- Tournaments play  ---- */
 
-.card-container article {
+.card-container {
   display: flex;
-  justify-content: space-around;
-  align-items: center;
-  margin-top: 30px;
+  flex-direction: column;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 3%;
+}
+
+.button-container .button {
+  width: 100%;
   margin-left: 30px;
   margin-right: 30px;
-  padding: 2%;
+}
+
+.card-container article {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  margin-left: 30px;
+  margin-right: 30px;
+  padding: 0 15px 10px 15px;
   background-color: rgb(245,245,245, 0.1);
   border-radius: 20px;
  
@@ -391,7 +432,20 @@ header nav div {
 
 .form-join {
   display: flex;
-  align-self: flex-end;
+ flex-direction: row;
 }
 
+
+
+/* ---- Manage  ---- */
+
+.edit-img {
+  width: 16px;
+  height: 16px;
+  opacity: 0.68;
+}
+
+.loc-date p{
+  text-align: left;
+}
 
