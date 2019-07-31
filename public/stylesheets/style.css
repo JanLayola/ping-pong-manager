@@ -544,3 +544,8 @@ header nav div {
   text-align: left;
   margin: 30% 10%;
 }
+
+li {
+  list-style: none;
+  margin: 15px 15px 15px 0;
+}
