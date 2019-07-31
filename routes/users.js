@@ -96,7 +96,7 @@ router.post('/tournament/:id/results', isNotLoggedIn, async (req, res, next) => 
     const { winnerf2, winnerf3, winnerf1, champion } = req.body;
     const currentTournament = await Tournament.findById(id);
     if (currentTournament.fase2.length === 0 && currentTournament.fase3.length === 0 && winnerf1) {
-      await Tournament.findByIdAndUpdate(id, { $push: { fase3: winnerf1 } });
+      await Tournament.findByIdAndUpdate(id, { $push: { fase2: winnerf1 } });
     } else if (currentTournament.fase3.length === 0 && currentTournament.fase4.length === 0 && winnerf2) {
       await Tournament.findByIdAndUpdate(id, { $push: { fase3: winnerf2 } });
     } else if (currentTournament.fase4.length === 0 && currentTournament.winner.length === 0 && winnerf3) {
@@ -275,7 +275,6 @@ router.post('/tournaments/:id', isNotLoggedIn, async (req, res, next) => {
     const currentTournament = await Tournament.findById(id);
     let inTournament = false;
     currentTournament.players.forEach(player => {
-      console.log(player);
       if (player.equals(userId)) {
         inTournament = true;
       }

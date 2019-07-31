@@ -4,8 +4,8 @@
 <section class="round-container">
 
   {{#if fase1.length}}
-      <form action="/users/tournament/{{id}}/results" method="POST">
         <section>
+      <form action="/users/tournament/{{id}}/results" method="POST">
           <h3>Quarter-final</h3>
           <p>{{fase1.[0].username}} vs {{fase1.[1].username}}</p>  
           {{#unless fase2.length}}
@@ -72,8 +72,8 @@
           {{#unless fase2.length}}
           <select class="select-css" name="winnerf1" id="winner1">
             <option value="" disabled selected value>Who wins?</option>
-            <option value="{{fase2.[12]._id}}">{{fase1.[12].username}}</option>
-            <option value="{{fase2.[13]._id}}" value>{{fase1.[13].username}}</option>
+            <option value="{{fase1.[12]._id}}">{{fase1.[12].username}}</option>
+            <option value="{{fase1.[13]._id}}" value>{{fase1.[13].username}}</option>
           </select>
           {{/unless}}
         </section>
