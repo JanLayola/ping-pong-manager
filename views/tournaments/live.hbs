@@ -3,21 +3,19 @@
 
 <section class="round-container">
   {{#if fase1.length}}
-  <section>
-
- 
-        <section>
-      <form action="/users/tournament/{{id}}/results" method="POST">
-          <h3>Quarter-final</h3>
-          <p>{{fase1.[0].username}} vs {{fase1.[1].username}}</p>  
-          {{#unless fase2.length}}
+    <section>
+          <form action="/users/tournament/{{id}}/results" method="POST">
+           <section>
+            <h3>Round of 16</h3>
+            <p>{{fase1.[0].username}} vs {{fase1.[1].username}}</p>  
+             {{#unless fase2.length}}
             <select class="select-css" name="winnerf1" id="winner1">
               <option value="" disabled selected value>Who wins?</option>
               <option value="{{fase1.[0]._id}}">{{fase1.[0].username}}</option>
               <option value="{{fase1.[1]._id}}" value>{{fase1.[1].username}}</option>
             </select>
-          </section>
           {{/unless}}
+        </section>
         
         <section>
           <p>{{fase1.[2].username}} vs {{fase1.[3].username}}</p>
@@ -90,15 +88,14 @@
           {{/unless}}
         </section>
         <section>
-        {{#unless fase2.length}}
-          <button class="button" type="submit">Send results</button>
-        {{/unless}}
+          {{#unless fase2.length}}
+            <button class="button" type="submit">Send results</button>
+          {{/unless}}
         </section>
       </form>
-       </section>
+      </section>
     {{/if}}
-</section>
-<section>
+  <section>
   {{#if fase2.length}}
       <form action="/users/tournament/{{id}}/results" method="POST">
         <section>
@@ -149,9 +146,9 @@
         </section>
       </form>
     {{/if}}
-</section>
+  </section>
 
-<section>
+    <section>
     {{#if fase3.length}}
         <form action="/users/tournament/{{id}}/results" method="POST">
           <section>
@@ -182,8 +179,8 @@
           </section>
         </form>
     {{/if}}
-</section>
-<section>
+  </section>
+  <section>
       {{#if fase4.length}}
         <form action="/users/tournament/{{id}}/results" method="POST">
         <section>
@@ -206,15 +203,15 @@
         {{/unless}}
         {{/if}}
       </form>
-</section>
+    </section>
     {{/if}}
-
     {{#if winner.length}}
     <section>
       <form>
         <p class="champion">The Champion is {{winner.[0].username}} !</p>
     </form>
     </section>
+  </section>
     
-  {{/if}}
+{{/if}}
  
