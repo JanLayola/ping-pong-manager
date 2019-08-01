@@ -834,7 +834,7 @@ li {
 .round-container section.final form section p.bar:after{
   position: absolute;
   content: '';
-  right: -20px;
+  right: -30px;
   height: 39px;
   bottom: 2px;
   width: 1px;
