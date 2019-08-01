@@ -481,6 +481,7 @@ header nav div {
   justify-content: space-around;
 }
 
+
 .nav-img {
   width: 68px;
   height: 68px;
@@ -506,7 +507,36 @@ header nav div {
   color: whitesmoke;
   opacity: 0.7;
   font-weight: 400;
+  -webkit-animation: slide-in-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  animation: slide-in-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
+
+@-webkit-keyframes slide-in-top {
+  0% {
+    -webkit-transform: translateY(-1000px);
+            transform: translateY(-1000px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    opacity: 0.7;
+  }
+}
+@keyframes slide-in-top {
+  0% {
+    -webkit-transform: translateY(-1000px);
+            transform: translateY(-1000px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    opacity: 0.7;
+  }
+}
+
+
 
 .hidden-nav {
   display: none;
@@ -537,8 +567,6 @@ header nav div {
   flex-direction: column;
   margin-top: 15px;
 }
-
-
 
 .button-container {
   display: flex;
@@ -666,7 +694,9 @@ header nav div {
  flex-direction: row;
 }
 
-
+.players {
+  text-align: center;
+}
 
 /* ---- Manage  ---- */
 
@@ -768,3 +798,46 @@ li {
   list-style: none;
   margin: 15px 15px 15px 0;
 }
+
+.coming-soon {
+  margin-left: 65px;
+}
+.round-container section form section p{
+  position: relative;
+}
+.round-container section.round16 form section p.bar:after{
+  position: absolute;
+  content: '';
+  right: -20px;
+  height: 90px;
+  width: 1px;
+  background: #F7CB2D;
+}
+.round-container section.quarter form section p.bar:after{
+  position: absolute;
+  content: '';
+  right: -20px;
+  height: 140px;
+  width: 1px;
+  background: #F7CB2D;
+}
+
+.round-container section.semi form section p.bar:after{
+  position: absolute;
+  content: '';
+  right: -20px;
+  height: 200px;
+  width: 1px;
+  background: #F7CB2D;
+}
+
+.round-container section.final form section p.bar:after{
+  position: absolute;
+  content: '';
+  right: -20px;
+  height: 39px;
+  bottom: 2px;
+  width: 1px;
+  background: #F7CB2D;
+}
+

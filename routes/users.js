@@ -17,7 +17,7 @@ router.get('/:username/tournaments', isNotLoggedIn, async (req, res, next) => {
     const username = req.params;
     const user = await User.findOne(username);
     const tournamentsList = await Tournament.find();
-    tournamentsList.forEach((tournament) => {
+    tournamentsList.reverse().forEach((tournament) => {
       if (user._id.equals(tournament.hostID[0])) {
         tournament.iAmHost = true;
       } if (tournament.fase1.length > 1 || tournament.fase2.length > 1 || tournament.fase3.length > 1) {
@@ -146,9 +146,10 @@ router.get('/tournaments/:id/edit', isNotLoggedIn, async (req, res, next) => {
   const { id } = req.params;
   try {
     const data = {
-      tournaments: true
+      tournaments: true,
+      id
     };
-    res.render('tournaments/edit', { data, id });
+    res.render('tournaments/edit', data);
   } catch (error) {
     next(error);
   }
@@ -181,7 +182,7 @@ router.get('/:username/tournaments/manage', isNotLoggedIn, async (req, res, next
     const username = req.params;
     const user = await User.findOne(username);
     const tournamentsList = await Tournament.find();
-    tournamentsList.forEach((tournament) => {
+    tournamentsList.reverse().forEach((tournament) => {
       if (user._id.equals(tournament.hostID[0])) {
         tournament.iAmHost = true;
       }

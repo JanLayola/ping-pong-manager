@@ -3,11 +3,11 @@
 
 <section class="round-container">
   {{#if fase1.length}}
-    <section>
+    <section class="round16">
           <form action="/users/tournament/{{id}}/results" method="POST">
            <section>
             <h3>Round of 16</h3>
-            <p>{{fase1.[0].username}} vs {{fase1.[1].username}}</p>  
+            <p class="bar">{{fase1.[0].username}} vs {{fase1.[1].username}}</p>  
              {{#unless fase2.length}}
             <select class="select-css" name="winnerf1" id="winner1">
               <option value="" disabled selected value>Who wins?</option>
@@ -18,7 +18,7 @@
         </section>
         
         <section>
-          <p>{{fase1.[2].username}} vs {{fase1.[3].username}}</p>
+          <p class="no-bar">{{fase1.[2].username}} vs {{fase1.[3].username}}</p>
           {{#unless fase2.length}}
           <select class="select-css" name="winnerf1" id="winner2">
             <option value="" disabled selected value>Who wins?</option>
@@ -28,7 +28,7 @@
           {{/unless}}
         </section>
         <section>
-          <p>{{fase1.[4].username}} vs {{fase1.[5].username}}</p>  
+          <p class="bar">{{fase1.[4].username}} vs {{fase1.[5].username}}</p>  
           {{#unless fase2.length}}
           <select class="select-css" name="winnerf1" id="winner1">
             <option value="" disabled selected value>Who wins?</option>
@@ -38,7 +38,7 @@
           {{/unless}}
         </section>
         <section>
-          <p>{{fase1.[6].username}} vs {{fase1.[7].username}}</p>
+          <p class="no-bar">{{fase1.[6].username}} vs {{fase1.[7].username}}</p>
           {{#unless fase2.length}}
           <select class="select-css" name="winnerf1" id="winner2">
             <option value="" disabled selected value>Who wins?</option>
@@ -48,7 +48,7 @@
           {{/unless}}
         </section>
         <section>
-          <p>{{fase1.[8].username}} vs {{fase1.[9].username}}</p>  
+          <p class="bar">{{fase1.[8].username}} vs {{fase1.[9].username}}</p>  
           {{#unless fase2.length}}
             <select class="select-css" name="winnerf1" id="winner1">
               <option value="" disabled selected value>Who wins?</option>
@@ -58,7 +58,7 @@
           {{/unless}}
         </section>
         <section>
-          <p>{{fase1.[10].username}} vs {{fase1.[11].username}}</p>
+          <p class="no-bar">{{fase1.[10].username}} vs {{fase1.[11].username}}</p>
           {{#unless fase2.length}}
           <select class="select-css" name="winnerf1" id="winner2">
             <option value="" disabled selected value>Who wins?</option>
@@ -68,7 +68,7 @@
           {{/unless}}
         </section>
         <section>
-          <p>{{fase1.[12].username}} vs {{fase1.[13].username}}</p>  
+          <p class="bar">{{fase1.[12].username}} vs {{fase1.[13].username}}</p>  
           {{#unless fase2.length}}
           <select class="select-css" name="winnerf1" id="winner1">
             <option value="" disabled selected value>Who wins?</option>
@@ -78,7 +78,7 @@
           {{/unless}}
         </section>
         <section>
-          <p>{{fase1.[14].username}} vs {{fase1.[15].username}}</p>
+          <p class="no-bar">{{fase1.[14].username}} vs {{fase1.[15].username}}</p>
           {{#unless fase2.length}}
           <select class="select-css" name="winnerf1" id="winner2">
             <option value="" disabled selected value>Who wins?</option>
@@ -95,12 +95,12 @@
       </form>
       </section>
     {{/if}}
-  <section>
+  <section class="quarter">
   {{#if fase2.length}}
       <form action="/users/tournament/{{id}}/results" method="POST">
-        <section>
+        <section >
           <h3>Quarter-final</h3>
-          <p>{{fase2.[0].username}} vs {{fase2.[1].username}}</p>  
+          <p class="bar">{{fase2.[0].username}} vs {{fase2.[1].username}}</p>  
           {{#unless fase3.length}}
             <select class="select-css" name="winnerf2" id="winner1">
               <option value="" disabled selected value>Who wins?</option>
@@ -110,7 +110,7 @@
           {{/unless}}
         </section>
         <section>
-          <p>{{fase2.[2].username}} vs {{fase2.[3].username}}</p>
+          <p class="no-bar">{{fase2.[2].username}} vs {{fase2.[3].username}}</p>
           {{#unless fase3.length}}
           <select class="select-css" name="winnerf2" id="winner2">
             <option value="" disabled selected value>Who wins?</option>
@@ -120,7 +120,7 @@
           {{/unless}}
         </section>
         <section>
-          <p>{{fase2.[4].username}} vs {{fase2.[5].username}}</p>  
+          <p class="bar">{{fase2.[4].username}} vs {{fase2.[5].username}}</p>  
           {{#unless fase3.length}}
           <select class="select-css" name="winnerf2" id="winner1">
             <option value="" disabled selected value>Who wins?</option>
@@ -130,7 +130,7 @@
           {{/unless}}
         </section>
         <section>
-          <p>{{fase2.[6].username}} vs {{fase2.[7].username}}</p>
+          <p class="no-bar">{{fase2.[6].username}} vs {{fase2.[7].username}}</p>
           {{#unless fase3.length}}
           <select class="select-css" name="winnerf2" id="winner2">
             <option value="" disabled selected value>Who wins?</option>
@@ -148,12 +148,12 @@
     {{/if}}
   </section>
 
-    <section>
+    <section class="semi">
     {{#if fase3.length}}
         <form action="/users/tournament/{{id}}/results" method="POST">
           <section>
           <h3>Semi-final</h3>
-            <p>{{fase3.[0].username}} vs {{fase3.[1].username}}</p>
+            <p class="bar">{{fase3.[0].username}} vs {{fase3.[1].username}}</p>
             {{#unless fase4.length}}
             <select class="select-css" name="winnerf3" id="winner1">
               <option value="" disabled selected value>Who wins?</option>
@@ -163,7 +163,7 @@
             {{/unless}}
           </section>
           <section>
-            <p>{{fase3.[2].username}} vs {{fase3.[3].username}}</p>
+            <p class="no-bar">{{fase3.[2].username}} vs {{fase3.[3].username}}</p>
             {{#unless fase4.length}}
             <select class="select-css" name="winnerf3" id="winner2">
               <option value="" disabled selected value>Who wins?</option>
@@ -180,11 +180,12 @@
         </form>
     {{/if}}
   </section>
-  <section>
+  <section class="final">
       {{#if fase4.length}}
         <form action="/users/tournament/{{id}}/results" method="POST">
         <section>
           <h3>Final</h3>
+        <p class="bar">{{fase4.[0].username}} vs {{fase4.[1].username}}</p>  
           {{#if fase4.length }}
           {{#unless winner.length}}
           <select class="select-css" name="champion" id="winner1">
@@ -193,7 +194,6 @@
             <option value="{{fase4.[1]._id}}" value>{{fase4.[1].username}}</option>
           </select>
           {{/unless}}
-        <p>{{fase4.[0].username}} vs {{fase4.[1].username}}</p>  
         </section>
 
         {{/if}}
