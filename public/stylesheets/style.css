@@ -144,7 +144,8 @@ p {
   font-size: 1.1em;
   margin-top: 5%;
   opacity: 1;
-  height: 50px;
+  height: 60px;
+  width: 60px;
   -webkit-animation: bounce-in-top 1s ease-in both;
 	animation: bounce-in-top 1s ease-in both;
 }
@@ -774,7 +775,7 @@ header nav div {
   align-items: center;
   margin-top: 15px;
   margin-left: 15px;
-  width: 150px;
+  width: 200px;
 }
 
 .round-container form {
@@ -804,7 +805,10 @@ li {
 }
 .round-container section form section p{
   position: relative;
+  width: 168px;
+  text-align: center;
 }
+
 .round-container section.round16 form section p.bar:after{
   position: absolute;
   content: '';
