@@ -98,6 +98,14 @@ p {
 
 /* ---- components ---- */
 
+.name {
+  position: absolute;
+  width: 74.3%;
+  margin-top: 0;
+  margin-left: 50px;
+ 
+}
+
 .button {
   padding: 0.35em 1.2em;
   background-color: #F7CB2D;
@@ -283,12 +291,12 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 5%;
+  margin-top: 20%;
 }
 
 .container img {
   width: 60%;
-  margin: 5% 0 10% 0;
+  margin:20% 0 10% 0;
 }
 
 @media (min-width: 700px) {
