@@ -325,7 +325,13 @@ main {
     text-align: center;
     font-size: 1em;
   }
+  .name {
+    margin-left: 37%;
+    width: 25%;
+  }
 }
+
+
 
 .login-form {
   display: flex;
